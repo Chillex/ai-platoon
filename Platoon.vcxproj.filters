@@ -13,7 +13,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Agent">
+    <Filter Include="Source Files\World">
+      <UniqueIdentifier>{6f40e1b1-0726-4d44-9d8e-bd32f6c9cd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\World">
+      <UniqueIdentifier>{c76bb689-82ad-4476-a16a-1f33d0945d1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Steering">
+      <UniqueIdentifier>{e415bc70-f0ed-49f7-b538-d435cdfacffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Steering">
       <UniqueIdentifier>{890d357d-d908-459e-be20-f26e075ae376}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -22,12 +31,39 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Agent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringManager.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBehavior.cpp">
+      <Filter>Source Files\Steering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringManager.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBehavior.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorType.h">
+      <Filter>Header Files\Steering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
