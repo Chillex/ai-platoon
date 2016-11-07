@@ -74,12 +74,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\glm;C:\SFML-2.4.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alex\Google Drive\Technikum\Master\OpenGLLibs\Include\glm;C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML-2.4.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -88,12 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\glm;C:\SFML-2.4.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alex\Google Drive\Technikum\Master\OpenGLLibs\Include\glm;C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML-2.4.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -104,14 +104,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\glm;C:\SFML-2.4.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alex\Google Drive\Technikum\Master\OpenGLLibs\Include\glm;C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\SFML-2.4.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -122,22 +122,24 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\glm;C:\SFML-2.4.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alex\Google Drive\Technikum\Master\OpenGLLibs\Include\glm;C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\SFML-2.4.0\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Google Drive\Technikum\Master\1. Semester\AI\SFML-2.4.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="BaseBehavior.cpp" />
+    <ClCompile Include="LookWhereYouAreGoing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="SeekBehavior.cpp" />
     <ClCompile Include="SteeringManager.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -145,8 +147,11 @@
     <ClInclude Include="Agent.h" />
     <ClInclude Include="BaseBehavior.h" />
     <ClInclude Include="BehaviorType.h" />
+    <ClInclude Include="LookWhereYouAreGoing.h" />
     <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="SeekBehavior.h" />
     <ClInclude Include="SteeringManager.h" />
+    <ClInclude Include="SteeringStruct.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,7 +7,8 @@ struct BehaviorType
 	{
 		SEEK,
 		FLEE,
-		ARRIVE
+		ARRIVE,
+		LOOK_WHERE_YOU_ARE_GOING
 	};
 };
 

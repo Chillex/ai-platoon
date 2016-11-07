@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <glm.hpp>
 #include <iostream>
 
 #include "Agent.h"
@@ -12,15 +13,20 @@ int main()
 	sf::View gameView(sf::FloatRect(0, 0, 1280, 720));
 
 	//obstacles
-	std::vector<Obstacle> obstacles;
-	//obstacles.push_back(Obstacle(200, 50, 100, 100));
+	std::vector<Obstacle*> obstacles;
+	//obstacles.push_back(new Obstacle(200, 50, 100, 100));
 	
 	// agents
-	Agent ag("Assets/character1.png");
-	std::vector<Agent> agents;
-	agents.push_back(ag);
+	std::vector<Agent*> agents;
+	agents.push_back(new Agent("Assets/character1.png"));
 	
 	World world(obstacles, agents);
+
+	sf::Texture targetTexture;
+	targetTexture.loadFromFile("Assets/target.png");
+	sf::Sprite targetSprite(targetTexture, sf::IntRect(0, 0, 24, 24));
+	targetSprite.setOrigin(12, 12);
+	targetSprite.setPosition(-50, -50);
 
 	sf::Clock deltaClock;
 	while (window.isOpen())
@@ -40,11 +46,12 @@ int main()
 			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
 			{
 				sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-				
-				std::vector<Agent>& worldAgents = world.GetAgents();
-				for (std::vector<Agent>::iterator it = worldAgents.begin(); it != worldAgents.end(); ++it)
+				targetSprite.setPosition(mouse);
+
+				std::vector<Agent*>& worldAgents = world.GetAgents();
+				for (std::vector<Agent*>::iterator it = worldAgents.begin(); it != worldAgents.end(); ++it)
 				{
-					it->SetTarget(glm::vec2(mouse.x, mouse.y));
+					(*it)->target = glm::vec2(mouse.x, mouse.y);
 				}
 			}
 		}
@@ -55,6 +62,7 @@ int main()
 		world.Update(dt.asSeconds());
 
 		//draw
+		window.draw(targetSprite);
 		world.Draw(window);
 
 		window.display();
