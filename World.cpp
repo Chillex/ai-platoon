@@ -1,5 +1,4 @@
 #include "World.h"
-#include <iostream>
 #include "Obstacle.h"
 #include "Agent.h"
 

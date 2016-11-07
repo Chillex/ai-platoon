@@ -4,6 +4,26 @@
 
 #include "Agent.h"
 #include "World.h"
+#include "SteeringManager.h"
+#include "Arrive.h"
+#include "LookWhereYouAreGoing.h"
+#include "Persue.h"
+#include "Evade.h"
+
+char* GetRandomCharacterImagePath()
+{
+	int r = rand() % 3;
+
+	switch (r)
+	{
+	case 1:
+		return "Assets/character1.png";
+	case 2:
+		return "Assets/character2.png";
+	default:
+		return "Assets/character3.png";
+	}
+}
 
 int main()
 {
@@ -18,7 +38,17 @@ int main()
 	
 	// agents
 	std::vector<Agent*> agents;
-	agents.push_back(new Agent("Assets/character1.png"));
+	Agent* arriveAgent = new Agent("Assets/character1.png", glm::vec2(100.0f));
+	Agent* persueAgent = new Agent("Assets/character2.png", glm::vec2(500.0f));
+
+	arriveAgent->steeringManager->AddBehavior(new Arrive(), 1.0f);
+	arriveAgent->steeringManager->AddBehavior(new LookWhereYouAreGoing(), 1.0f);
+
+	persueAgent->steeringManager->AddBehavior(new Persue(arriveAgent, 5.0f), 1.0f);
+	persueAgent->steeringManager->AddBehavior(new LookWhereYouAreGoing(), 1.0f);
+
+	agents.push_back(arriveAgent);
+	agents.push_back(persueAgent);
 	
 	World world(obstacles, agents);
 
@@ -43,20 +73,31 @@ int main()
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
 				window.close();
 
-			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-				targetSprite.setPosition(mouse);
 
-				std::vector<Agent*>& worldAgents = world.GetAgents();
-				for (std::vector<Agent*>::iterator it = worldAgents.begin(); it != worldAgents.end(); ++it)
+				if(event.mouseButton.button == sf::Mouse::Left)
 				{
-					(*it)->target = glm::vec2(mouse.x, mouse.y);
+					targetSprite.setPosition(mouse);
+
+					std::vector<Agent*>& worldAgents = world.GetAgents();
+					for (std::vector<Agent*>::iterator it = worldAgents.begin(); it != worldAgents.end(); ++it)
+					{
+						(*it)->target.position = glm::vec2(mouse.x, mouse.y);
+					}
 				}
+				
+				//if(event.mouseButton.button == sf::Mouse::Right)
+				//{
+				//	Agent* newAgent = new Agent(GetRandomCharacterImagePath(), glm::vec2(mouse.x, mouse.y));
+				//	newAgent->target.position = glm::vec2(targetSprite.getPosition().x, targetSprite.getPosition().y);
+				//	world.AddAgent(newAgent);
+				//}
 			}
 		}
 
-		window.clear();
+		window.clear(sf::Color::White);
 		
 		// update
 		world.Update(dt.asSeconds());

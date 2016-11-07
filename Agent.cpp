@@ -1,48 +1,52 @@
 #include "Agent.h"
 #include "SteeringStruct.h"
 #include "SteeringManager.h"
-#include <iostream>
 
 Agent::Agent(char* spritePath)
-	: position(100.0f, 100.0f)
-	, velocity(0.0f, 0.0f)
-	, orientation(90.0f)
-	, rotation(0.0f)
-	, maxSpeed(150.0f)
-	, maxForce(0.1f)
-	, maxRotation(150.0f)
+	: Agent(spritePath, glm::vec2(100.0f))
+{
+	
+}
+
+Agent::Agent(char* spritePath, glm::vec2 pos)
+	: position(pos)
+	, linearVelocity(0.0f, 0.0f)
+	, orientation(0.0f)
+	, angularVelocity(0.0f)
+	, maxLinearVelocity(200.0f)
+	, maxLinearAcceleration(0.1f)
+	, maxAngularVelocity(150.0f)
 	, maxAngularAcceleration(3.0f)
-	, target(position)
-	, m_spriteRect(0, 0, 71, 128)
+	, target({ position, orientation })
+	, m_spriteRect(0, 0, 32, 64)
 	, m_sprite(m_spritesheet, m_spriteRect)
 {
 	m_spritesheet.loadFromFile(spritePath);
-	m_sprite.setScale(0.5f, 0.5f);
 	m_sprite.setOrigin(m_spriteRect.width * 0.5f, m_spriteRect.height * 0.5f);
 
-	m_steeringManager = new SteeringManager();
+	steeringManager = new SteeringManager();
 }
 
 Agent::~Agent()
 {
-	delete m_steeringManager;
+	delete steeringManager;
 }
 
 void Agent::Update(float deltaTime, World& world)
 {
 	// move and rotate agent agent
-	position += velocity * deltaTime;
-	orientation += rotation * deltaTime;
+	position += linearVelocity * deltaTime;
+	orientation += angularVelocity * deltaTime;
 
-	// calculate velocity
-	Steering steering = m_steeringManager->GetSteering(*this, world);
+	// calculate linearVelocity
+	Steering steering = steeringManager->GetSteering(*this, world);
 
-	velocity = Truncate(velocity + steering.linear, maxSpeed);
-	rotation = Truncate(rotation + steering.angular, maxRotation);
+	linearVelocity = Truncate(linearVelocity + steering.linear, maxLinearVelocity);
+	angularVelocity = Truncate(angularVelocity + steering.angular, maxAngularVelocity);
 
 	// set sprite data
 	m_sprite.setPosition(position.x, position.y);
-	m_sprite.setRotation(orientation);
+	m_sprite.setRotation(orientation + 90.0f); // +90.0f because weird SFML stuff
 }
 
 void Agent::Draw(sf::RenderWindow& window) const
@@ -50,7 +54,7 @@ void Agent::Draw(sf::RenderWindow& window) const
 	window.draw(m_sprite);
 }
 
-glm::vec2 Agent::Truncate(glm::vec2 vec, float max)
+glm::vec2 Agent::Truncate(glm::vec2 vec, float max) const
 {
 	if(glm::length(vec) > 0.0f)
 	{
@@ -62,7 +66,7 @@ glm::vec2 Agent::Truncate(glm::vec2 vec, float max)
 	return vec;
 }
 
-float Agent::Truncate(float value, float max)
+float Agent::Truncate(float value, float max) const
 {
 	if(value > 0.0f)
 	{

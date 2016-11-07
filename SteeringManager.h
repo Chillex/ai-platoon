@@ -1,12 +1,11 @@
 #ifndef STEERING_MANAGER_H
 #define STEERING_MANAGER_H
 
-#include <map>
 #include <glm.hpp>
+#include <vector>
 
-#include "BehaviorType.h"
 #include "SteeringStruct.h"
-#include "SeekBehavior.h"
+#include "BlendedBehavior.h"
 
 class BaseBehavior;
 class World;
@@ -17,11 +16,12 @@ public:
 	SteeringManager();
 	~SteeringManager();
 
+	void AddBehavior(BaseBehavior* behavior, float value);
 	Steering GetSteering(Agent& agent, World& world);
 
 protected:
-	std::map<BehaviorType::Enum, BaseBehavior*> m_behaviors;
-	std::map<BehaviorType::Enum, float> m_behaviorValue;
+	std::vector<BlendedBehavior> m_behaviors;
+
 };
 
 #endif

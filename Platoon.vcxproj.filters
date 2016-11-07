@@ -45,11 +45,29 @@
     <ClCompile Include="Agent.cpp">
       <Filter>Source Files\World</Filter>
     </ClCompile>
-    <ClCompile Include="SeekBehavior.cpp">
-      <Filter>Source Files\Steering</Filter>
-    </ClCompile>
     <ClCompile Include="LookWhereYouAreGoing.cpp">
       <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Face.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Align.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Arrive.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Flee.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Persue.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Evade.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,20 +83,41 @@
     <ClInclude Include="BaseBehavior.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="BehaviorType.h">
-      <Filter>Header Files\Steering</Filter>
-    </ClInclude>
     <ClInclude Include="SteeringStruct.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
     <ClInclude Include="Agent.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
-    <ClInclude Include="SeekBehavior.h">
-      <Filter>Header Files\Steering</Filter>
-    </ClInclude>
     <ClInclude Include="LookWhereYouAreGoing.h">
       <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Face.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Align.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendedBehavior.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Flee.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrive.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Persue.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Evade.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
