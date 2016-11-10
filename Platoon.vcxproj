@@ -146,6 +146,7 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Persue.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="Seperation.cpp" />
     <ClCompile Include="SteeringManager.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Persue.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="Seperation.h" />
     <ClInclude Include="SteeringManager.h" />
     <ClInclude Include="SteeringStruct.h" />
     <ClInclude Include="Target.h" />

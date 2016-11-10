@@ -3,6 +3,7 @@
 #include "Seek.h"
 #include "Arrive.h"
 #include "LookWhereYouAreGoing.h"
+#include <iostream>
 
 SteeringManager::SteeringManager()
 {
@@ -38,8 +39,13 @@ Steering SteeringManager::GetSteering(Agent& agent, World& world)
 
 		Steering steering = it->behavior->GetSteering(agent, world);
 
-		overallSteering.linear += steering.linear * value;
-		overallSteering.angular += steering.angular * value;
+		if (glm::length(steering.linear) > 0.0f)
+		{
+			overallSteering.linear += steering.linear * value;
+		}
+
+		if (steering.angular != 0.0f)
+			overallSteering.angular += steering.angular * value;
 	}
 
 	overallSteering.TruncateLinear(agent.maxLinearAcceleration);

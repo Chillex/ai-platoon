@@ -9,6 +9,7 @@
 #include "LookWhereYouAreGoing.h"
 #include "Persue.h"
 #include "Evade.h"
+#include "Seperation.h"
 
 char* GetRandomCharacterImagePath()
 {
@@ -42,9 +43,12 @@ int main()
 	Agent* persueAgent = new Agent("Assets/character2.png", glm::vec2(500.0f));
 
 	arriveAgent->steeringManager->AddBehavior(new Arrive(), 1.0f);
+	arriveAgent->steeringManager->AddBehavior(new Seperation(50.0f), 5.0f);
 	arriveAgent->steeringManager->AddBehavior(new LookWhereYouAreGoing(), 1.0f);
 
-	persueAgent->steeringManager->AddBehavior(new Persue(arriveAgent, 5.0f), 1.0f);
+	persueAgent->steeringManager->AddBehavior(new Arrive(), 1.0f);
+	//persueAgent->steeringManager->AddBehavior(new Persue(arriveAgent, 5.0f), 1.0f);
+	persueAgent->steeringManager->AddBehavior(new Seperation(50.0f), 5.0f);
 	persueAgent->steeringManager->AddBehavior(new LookWhereYouAreGoing(), 1.0f);
 
 	agents.push_back(arriveAgent);
@@ -88,12 +92,15 @@ int main()
 					}
 				}
 				
-				//if(event.mouseButton.button == sf::Mouse::Right)
-				//{
-				//	Agent* newAgent = new Agent(GetRandomCharacterImagePath(), glm::vec2(mouse.x, mouse.y));
-				//	newAgent->target.position = glm::vec2(targetSprite.getPosition().x, targetSprite.getPosition().y);
-				//	world.AddAgent(newAgent);
-				//}
+				if(event.mouseButton.button == sf::Mouse::Right)
+				{
+					Agent* newAgent = new Agent(GetRandomCharacterImagePath(), glm::vec2(mouse.x, mouse.y));
+					newAgent->steeringManager->AddBehavior(new Arrive(), 1.0f);
+					newAgent->steeringManager->AddBehavior(new Seperation(50.0f), 5.0f);
+					newAgent->steeringManager->AddBehavior(new LookWhereYouAreGoing(), 1.0f);
+					newAgent->target.position = glm::vec2(targetSprite.getPosition().x, targetSprite.getPosition().y);
+					world.AddAgent(newAgent);
+				}
 			}
 		}
 

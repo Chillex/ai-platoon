@@ -66,8 +66,11 @@
     <ClCompile Include="Persue.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
+    <ClCompile Include="Seperation.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
     <ClCompile Include="Evade.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Steering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Evade.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Seperation.h">
+      <Filter>Header Files\Steering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
