@@ -4,7 +4,8 @@
 
 Align::Align()
 	: m_tolarence(0.1f)
-	, m_decelerationRadius(20.0f)
+	, m_decelerationRadius(45.0f)
+	, m_timeToTarget(0.1f)
 {
 }
 
@@ -39,7 +40,7 @@ float Align::AlignVelocity(const Agent& agent, const float targetOrientation) co
 
 		targetRotation *= rotation / rotationSize;
 
-		velocity = targetRotation - agent.angularVelocity; // maybe () / 0.1f is needed
+		velocity = (targetRotation - agent.angularVelocity) / m_timeToTarget;
 
 		float angularAcceleration = abs(velocity);
 		if (angularAcceleration > agent.maxAngularAcceleration)

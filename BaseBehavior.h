@@ -3,7 +3,7 @@
 
 #include <glm.hpp>
 
-class Steering;
+struct Steering;
 class Agent;
 class World;
 

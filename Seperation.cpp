@@ -4,8 +4,7 @@
 #include "World.h"
 #include <iostream>
 
-Seperation::Seperation(float seperationRadius)
-	: m_seperationRadius(seperationRadius)
+Seperation::Seperation()
 {
 }
 
@@ -32,15 +31,15 @@ glm::vec2 Seperation::SeperationVelocity(const Agent& agent, const std::vector<A
 	{
 		const Agent& neighbour = *(*it);
 
-		if(&neighbour == &agent)
+		if(&neighbour == &agent || neighbour.team != agent.team)
 			continue;
 
 		glm::vec2 direction = agent.position - neighbour.position;
 		float distance = glm::length(direction);
 
-		if(distance < m_seperationRadius)
+		if(distance < agent.sizeRadius * 2)
 		{
-			float strength = agent.maxLinearVelocity * (m_seperationRadius - distance) / m_seperationRadius;
+			float strength = agent.maxLinearVelocity * (agent.sizeRadius * 2 - distance) / agent.sizeRadius * 2;
 			//float strength = std::min(5.0f / (distance * distance), agent.maxLinearVelocity);
 			velocity += strength * glm::normalize(direction);
 		}

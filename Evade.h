@@ -10,7 +10,7 @@ public:
 	~Evade();
 
 	virtual Steering GetSteering(Agent& agent, World& world) override;
-	glm::vec2 EvadeVelocity(const Agent& agent);
+	glm::vec2 EvadeVelocity(const Agent& agent, const Agent* targetAgent);
 
 protected:
 	Agent* m_target;

@@ -17,15 +17,15 @@ Steering Evade::GetSteering(Agent& agent, World& world)
 	Steering steering;
 	steering.SetZero();
 
-	steering.linear = EvadeVelocity(agent) - agent.linearVelocity;
+	steering.linear = EvadeVelocity(agent, m_target) - agent.linearVelocity;
 
 	return steering;
 }
 
-glm::vec2 Evade::EvadeVelocity(const Agent& agent)
+glm::vec2 Evade::EvadeVelocity(const Agent& agent, const Agent* targetAgent)
 {
 	float prediction = 0.0f;
-	glm::vec2 direction = m_target->position - agent.position;
+	glm::vec2 direction = targetAgent->position - agent.position;
 	float distance = glm::length(direction);
 
 	float speed = glm::length(agent.linearVelocity);
@@ -35,6 +35,6 @@ glm::vec2 Evade::EvadeVelocity(const Agent& agent)
 	else
 		prediction = distance / speed;
 
-	glm::vec2 target = m_target->position + m_target->linearVelocity * prediction;
+	glm::vec2 target = targetAgent->position + targetAgent->linearVelocity * prediction;
 	return FleeVelocity(target, agent);
 }

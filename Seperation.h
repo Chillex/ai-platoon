@@ -7,14 +7,11 @@
 class Seperation : public BaseBehavior
 {
 public:
-	explicit Seperation(float seperationRadius);
+	explicit Seperation();
 	~Seperation();
 
 	virtual Steering GetSteering(Agent& agent, World& world) override;
 	glm::vec2 SeperationVelocity(const Agent& agent, const std::vector<Agent*>& worldAgents) const;
-
-protected:
-	float m_seperationRadius;
 };
 
 #endif

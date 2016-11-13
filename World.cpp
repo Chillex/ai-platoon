@@ -2,13 +2,10 @@
 #include "Obstacle.h"
 #include "Agent.h"
 
-World::World()
-{
-}
-
-World::World(std::vector<Obstacle*>& obstacles, std::vector<Agent*>& agents)
+World::World(std::vector<Obstacle*>& obstacles, std::vector<Agent*>& agents, bool debug)
 	: m_obstacles(obstacles)
 	, m_agents(agents)
+	, m_debug(debug)
 {
 }
 
@@ -26,12 +23,12 @@ void World::AddAgent(Agent* agent)
 	m_agents.push_back(agent);
 }
 
-std::vector<Obstacle*>& World::GetObstacles()
+const std::vector<Obstacle*>& World::GetObstacles() const
 {
 	return m_obstacles;
 }
 
-std::vector<Agent*>& World::GetAgents()
+const std::vector<Agent*>& World::GetAgents() const
 {
 	return m_agents;
 }
@@ -79,5 +76,18 @@ void World::Draw(sf::RenderWindow& window) const
 	for (std::vector<Agent*>::const_iterator it = m_agents.begin(); it != m_agents.end(); ++it)
 	{
 		(*it)->Draw(window);
+
+		if (m_debug)
+			(*it)->DrawDebug(window);
 	}
+}
+
+void World::ToggleDebug()
+{
+	m_debug = !m_debug;
+}
+
+bool World::IsDebuggingMode() const
+{
+	return m_debug;
 }
