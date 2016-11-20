@@ -14,6 +14,7 @@ public:
 
 protected:
 	float m_decelerationRadius;
+	float m_timeToTarget;
 };
 
 #endif

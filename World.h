@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "DebugDrawConfig.h"
 
 class Obstacle;
 class Agent;
@@ -10,7 +11,7 @@ class Agent;
 class World
 {
 public:
-	World(std::vector<Obstacle*>& obstacles, std::vector<Agent*>& agents, bool debug);
+	World(std::vector<Obstacle*>& obstacles, std::vector<Agent*>& agents, DebugDrawConfig debugConf);
 	~World();
 
 	void AddObstacle(Obstacle* obstacle);
@@ -27,11 +28,12 @@ public:
 	void Draw(sf::RenderWindow& window) const;
 
 	void ToggleDebug();
-	bool IsDebuggingMode() const;
+	DebugDrawConfig& World::GetDebugInfo();
+
 protected:
 	std::vector<Obstacle*> m_obstacles;
 	std::vector<Agent*> m_agents;
-	bool m_debug;
+	DebugDrawConfig m_debugConf;
 };
 
 #endif

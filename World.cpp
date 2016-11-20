@@ -2,10 +2,10 @@
 #include "Obstacle.h"
 #include "Agent.h"
 
-World::World(std::vector<Obstacle*>& obstacles, std::vector<Agent*>& agents, bool debug)
+World::World(std::vector<Obstacle*>& obstacles, std::vector<Agent*>& agents, DebugDrawConfig debugConf)
 	: m_obstacles(obstacles)
 	, m_agents(agents)
-	, m_debug(debug)
+	, m_debugConf(debugConf)
 {
 }
 
@@ -75,19 +75,17 @@ void World::Draw(sf::RenderWindow& window) const
 	// draw all agents
 	for (std::vector<Agent*>::const_iterator it = m_agents.begin(); it != m_agents.end(); ++it)
 	{
+		(*it)->DrawDebug(window, m_debugConf);
 		(*it)->Draw(window);
-
-		if (m_debug)
-			(*it)->DrawDebug(window);
 	}
 }
 
 void World::ToggleDebug()
 {
-	m_debug = !m_debug;
+	
 }
 
-bool World::IsDebuggingMode() const
+DebugDrawConfig& World::GetDebugInfo()
 {
-	return m_debug;
+	return m_debugConf;
 }

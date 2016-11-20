@@ -20,7 +20,7 @@ Steering PathFollowing::GetSteering(Agent& agent, World& world)
 	Steering steering;
 	steering.SetZero();
 
-	steering.linear = PathFollowingVelocity(m_path, agent) - agent.linearVelocity;
+	steering.linear = PathFollowingVelocity(m_path, agent);
 
 	return steering;
 }

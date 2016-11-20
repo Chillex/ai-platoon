@@ -3,7 +3,8 @@
 #include "Agent.h"
 
 Arrive::Arrive()
-	: m_decelerationRadius(160.0f)
+	: m_decelerationRadius(100.0f)
+	, m_timeToTarget(0.1f)
 {
 }
 
@@ -16,7 +17,7 @@ Steering Arrive::GetSteering(Agent& agent, World& world)
 	Steering steering;
 	steering.SetZero();
 
-	steering.linear = ArriveVelocity(agent) - agent.linearVelocity;
+	steering.linear = ArriveVelocity(agent);
 
 	return steering;
 }
@@ -35,8 +36,8 @@ glm::vec2 Arrive::ArriveVelocity(const Agent& agent) const
 	}
 	else
 	{
-		desiredVelocity = glm::normalize(desiredVelocity) * agent.maxLinearVelocity;
+		desiredVelocity = glm::normalize(desiredVelocity) * agent.maxLinearVelocity / m_timeToTarget;
 	}
 
-	return desiredVelocity;
+	return desiredVelocity - agent.linearVelocity;
 }

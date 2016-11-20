@@ -43,7 +43,7 @@ glm::vec2 CollisionAvoidance::CollisionAvoidanceVelocity(const Agent& agent, con
 	{
 		Agent* target = (*it);
 
-		if (target == &agent || target->team == agent.team)
+		if (target == &agent || target->team == agent.team || target->team < 0)
 			continue;
 
 		// calculate time to collision

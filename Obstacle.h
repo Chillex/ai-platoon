@@ -7,15 +7,16 @@ class Obstacle
 {
 public:
 	Obstacle();
-	Obstacle(float width, float height, float x, float y);
-	Obstacle(sf::FloatRect data);
+	Obstacle(float width, float height, float x, float y, float rotation);
+	Obstacle(sf::FloatRect rect, float rotation, char* spritePath, sf::Vector2f spriteDimensions);
 	~Obstacle();
 
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window) const;
 
-protected:
-	sf::FloatRect m_data;
+	sf::RectangleShape shape;
+	sf::Texture texture;
+	sf::Sprite sprite;
 };
 
 #endif

@@ -17,7 +17,7 @@ Steering Persue::GetSteering(Agent& agent, World& world)
 	Steering steering;
 	steering.SetZero();
 
-	steering.linear = PersueVelocity(agent) - agent.linearVelocity;
+	steering.linear = PersueVelocity(agent);
 
 	return steering;
 }

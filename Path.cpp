@@ -1,6 +1,8 @@
 #include "Path.h"
+#include "DebugDrawConfig.h"
 
 Path::Path()
+	: color(sf::Color::Red)
 {
 }
 
@@ -53,26 +55,41 @@ void Path::AddWaypoint(glm::vec2& waypoint)
 	nodes.push_back(waypoint);
 }
 
-void Path::Draw(sf::RenderWindow& window)
+void Path::Draw(sf::RenderWindow& window) const
 {
-	sf::RectangleShape point(sf::Vector2f(10.0f, 10.0f));
-	point.setOrigin(5.0f, 5.0f);
-	point.setFillColor(sf::Color::Green);
+	sf::Texture pointTex;
+	pointTex.loadFromFile("Assets/target.png");
+	sf::Sprite point(pointTex, sf::IntRect(0, 0, 24, 24));
+	point.setOrigin(12, 12);
 
-	for (int i = 0; i < nodes.size(); ++i)
+	size_t last = nodes.size() - 1;
+	point.setPosition(nodes[last].x, nodes[last].y);
+	window.draw(point);
+}
+
+void Path::DrawDebug(sf::RenderWindow& window, DebugDrawConfig debugConf) const
+{
+	if(debugConf.debugPath)
 	{
-		point.setPosition(nodes[i].x, nodes[i].y);
-		window.draw(point);
+		sf::RectangleShape point(sf::Vector2f(10.0f, 10.0f));
+		point.setOrigin(5.0f, 5.0f);
+		point.setFillColor(color);
 
-		if(i > 0)
+		for (int i = 0; i < nodes.size(); ++i)
 		{
-			sf::Vertex line[] =
-			{
-				sf::Vertex(sf::Vector2f(nodes[i - 1].x, nodes[i - 1].y), sf::Color::Green),
-				sf::Vertex(sf::Vector2f(nodes[i].x, nodes[i].y), sf::Color::Green)
-			};
+			point.setPosition(nodes[i].x, nodes[i].y);
+			window.draw(point);
 
-			window.draw(line, 2, sf::Lines);
+			if (i > 0)
+			{
+				sf::Vertex line[] =
+				{
+					sf::Vertex(sf::Vector2f(nodes[i - 1].x, nodes[i - 1].y), color),
+					sf::Vertex(sf::Vector2f(nodes[i].x, nodes[i].y), color)
+				};
+
+				window.draw(line, 2, sf::Lines);
+			}
 		}
 	}
 }

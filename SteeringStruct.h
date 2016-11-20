@@ -26,6 +26,14 @@ struct Steering
 		if (abs(angular) > maxAngularAcceleration)
 			angular *= maxAngularAcceleration / abs(angular);
 	}
+
+	bool IsAboveThreshhold(float linear, float angular) const
+	{
+		if (glm::length(this->linear) > linear || abs(this->angular) > angular)
+			return true;
+
+		return false;
+	}
 };
 
 #endif

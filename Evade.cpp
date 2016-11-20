@@ -17,7 +17,7 @@ Steering Evade::GetSteering(Agent& agent, World& world)
 	Steering steering;
 	steering.SetZero();
 
-	steering.linear = EvadeVelocity(agent, m_target) - agent.linearVelocity;
+	steering.linear = EvadeVelocity(agent, m_target);
 
 	return steering;
 }

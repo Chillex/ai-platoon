@@ -15,7 +15,7 @@ Steering Seek::GetSteering(Agent& agent, World& world)
 	Steering steering;
 	steering.SetZero();
 
-	steering.linear = SeekVelocity(agent.target.position, agent) - agent.linearVelocity;
+	steering.linear = SeekVelocity(agent.target.position, agent);
 
 	return steering;
 }
@@ -28,5 +28,5 @@ glm::vec2 Seek::SeekVelocity(const glm::vec2 pos, const Agent& agent) const
 	if (glm::length(direction) > 0.0f)
 		desiredVelocity = glm::normalize(direction) * agent.maxLinearVelocity;
 
-	return desiredVelocity;
+	return desiredVelocity - agent.linearVelocity;
 }
